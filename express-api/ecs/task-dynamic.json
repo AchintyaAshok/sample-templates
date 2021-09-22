@@ -1,0 +1,40 @@
+{
+    "family": "sample-express-server",
+    "taskRoleArn": "arn:aws:iam::<account_id>:role/sample-express-server-role",
+    "executionRoleArn": "arn:aws:iam::<account_id>:role/sample-express-server-role",
+    "networkMode": "bridge",
+    "tags": [
+        {
+            "key": "app",
+            "value": "sample-express-server"
+        }
+    ],
+    "containerDefinitions": [
+      {
+        "name": "api",
+        "image": "<account_id>.dkr.ecr.<AWS_REGION>.amazonaws.com/sample-express-server:latest",
+        "memory": 448,
+        "cpu": 256,
+        "essential": true,
+        "portMappings": [
+            {
+                "containerPort": 3000,
+                "hostPort": 0
+            }
+        ],
+        "environment": [
+            {
+                "name": "AWS_REGION",
+                "value": "<AWS_REGION>"
+            }
+        ],
+        "logConfiguration": {
+            "logDriver": "awslogs",
+            "options": {
+                "awslogs-group": "sample-express-server",
+                "awslogs-region": "<AWS_REGION>"
+            }
+        }
+      }
+    ]
+  }

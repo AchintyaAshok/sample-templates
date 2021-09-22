@@ -1,0 +1,32 @@
+{
+  "name": "express-api",
+  "version": "1.0.0",
+  "description": "Sample express api.",
+  "main": "index.js",
+  "scripts": {
+    "start": "cd src && node index.js",
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AchintyaAshok/sample-templates.git"
+  },
+  "keywords": [
+    "sample",
+    "templates",
+    "express",
+    "ecs",
+    "aws",
+    "template",
+    "learn"
+  ],
+  "author": "Achintya Ashok",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AchintyaAshok/sample-templates/issues"
+  },
+  "homepage": "https://github.com/AchintyaAshok/sample-templates#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
