@@ -1,0 +1,27 @@
+{
+  "name": "typescript-lambda",
+  "version": "1.0.0",
+  "description": "NodeJS Project for Typescript Lambdas",
+  "main": "index.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "jest test"
+  },
+  "url": "git+https://github.com/AchintyaAshok/sample-templates.git",
+  "author": "rosbel",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AchintyaAshok/sample-templates/issues"
+  },
+  "homepage": "https://github.com/AchintyaAshok/sample-templates#readme",
+  "private": false,
+  "dependencies": {
+    "node-fetch": "^3.0.0"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.83",
+    "@types/node": "^16.7.10",
+    "ts-node": "^10.2.1",
+    "typescript": "^4.4.2"
+  }
+}

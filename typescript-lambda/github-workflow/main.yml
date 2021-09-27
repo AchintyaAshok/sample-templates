@@ -1,0 +1,42 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Build & Deploy Lambda to S3
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14.x
+      - name: Yarn Install
+        run: |
+          yarn install
+      - name: Production Build
+        run: |
+          yarn build
+      - name: Zip build
+        run: |
+          mv ./node_modules ./build
+          mv ./package.json ./build
+          cd ./build
+          zip -r build .
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: {{ secrets.AWS_REGION }}
+      - name: Deploy to S3
+        run: aws s3 cp ./build/build.zip s3://${{ secrets.AWS_S3_BUCKET }}
+      - name: Update Lambda
+        run: |
+          aws lambda update-function-code --function-name ${{ secrets.REPLY_TO_TXTS_LAMBDA_NAME }} --s3-bucket ${{ secrets.AWS_S3_BUCKET }} --s3-key build.zip
+
